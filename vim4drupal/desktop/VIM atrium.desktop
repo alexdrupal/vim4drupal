@@ -1,0 +1,20 @@
+[Desktop Entry]
+Comment[ru]=
+Comment=
+Exec=gvim -u /home/vim4drupal/.vim/vim4drupal/rc/atrium.vimrc
+GenericName[ru]=
+GenericName=
+Icon=gvim
+MimeType=
+Name[ru]=
+Name=
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=none
+X-KDE-SubstituteUID=false
+X-KDE-Username=
+X-Ubuntu-Gettext-Domain=desktop_kdebase

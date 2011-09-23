@@ -1,0 +1,26 @@
+
+* Description
+
+    Vim4Drupal is a set of plugins PLUS some scripts to make VIM behave like an IDE for Drupal projects
+
+* What included:
+
+    bufexplorer.vim
+    checksyntax.vim
+    CSApprox.vim
+    debugger.py
+    debugger.vim
+    matchit.vim
+    NERD_commenter.vim
+    NERD_tree.vim
+    quickfixsigns.vim
+    snipMate.vim
+    surround.vim
+    taglist.vim
+    vcsbzr.vim
+    vcscommand.vim
+    vcscvs.vim
+    vcsgit.vim
+    vcshg.vim
+    vcssvk.vim
+    vcssvn.vim

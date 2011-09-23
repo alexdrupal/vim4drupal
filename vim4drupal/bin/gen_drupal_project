@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# Set this to the root folder for your projects
+path_to_projects="${HOME}/www"
+
+path_to_vim4drupal="${HOME}/.vim/vim4drupal"
+path_to_rc="${path_to_vim4drupal}/rc"
+path_to_desktop="${path_to_vim4drupal}/desktop"
+path_to_tags="${path_to_vim4drupal}/tags"
+
+path_to_templates="${path_to_vim4drupal}/templates"
+
+path_to_template_rc_file="${path_to_templates}/drupal.vimrc"
+path_to_template_desktop_file="${path_to_templates}/template_gvim.desktop"
+
+
+function usage
+{
+  echo "Usage is: $0 project_path - project_path is relative to $path_to_projects. Example: project1 will be in $path_to_projects/project1"
+}
+
+if [[ "$1" = "" ]]; then
+  usage
+  exit 0
+fi
+
+command -v ctags-exuberant &>/dev/null || { echo >&2 "I require exuberant ctags but it's not installed.  Aborting."; exit 1; }
+
+project_path="$path_to_projects/$1"
+
+if [ ! -d "$project_path" ]; then
+    echo "Project directory $project_path doesn't exist. Aborting "; exit 1;
+fi
+
+echo "Project path is $project_path"
+cd $project_path
+    
+ctags-exuberant -f $path_to_tags/$1 \
+--langmap=php:.php.module.install.inc.engine -R \
+--exclude="\.svn" \
+--exclude="\.git" \
+--exclude="*\.js" \
+--totals=yes \
+--tag-relative=yes \
+--PHP-kinds=+cf \
+--fields=+iaSs \
+--extra=+q \
+--regex-PHP='/abstract\s+class\s+([^ ]+)/\1/c/' \
+--regex-PHP='/interface\s+([^ ]+)/\1/c/' \
+--regex-PHP='/(public\s+|static\s+|abstract\s+|protected\s+|private\s+)function\s+\&?\s*([^ (]+)/\2/f/'
+
+# copy vimrc file
+sed -e "s/\[project\]/${1}/g" -e "s#\[path_to_projects\]#${path_to_projects}#g" -e "s#\[path_to_tags\]#${path_to_tags}#g" ${path_to_template_rc_file} > ${path_to_rc}/$1.vimrc
+
+# copy desktop file
+sed  -e "s#\[project\]#${1}.vimrc#g" -e "s#\[path_to_rc\]#${path_to_rc}#g" ${path_to_template_desktop_file} > ${path_to_desktop}/VIM\ $1.desktop
+
+echo Done
+exit 0
+

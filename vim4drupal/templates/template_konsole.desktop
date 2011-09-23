@@ -1,0 +1,20 @@
+[Desktop Entry]
+Comment[ru]=
+Comment=
+Exec=vim -u [path_to_rc]/[project]
+GenericName[ru]=
+GenericName=
+Icon=gvim
+MimeType=
+Name[ru]=
+Name=
+Path=
+StartupNotify=true
+Terminal=true
+TerminalOptions=--profile VIM --noclose
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=none
+X-KDE-SubstituteUID=false
+X-KDE-Username=
+X-Ubuntu-Gettext-Domain=desktop_kdebase
